@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SanitizerSeller</string>
+    <string-array name="category_array">
+        <item>Sanitizer</item>
+        <item>HandWash</item>
+    </string-array>
+</resources>
