@@ -52,7 +52,7 @@ public class OrderItemsActivity extends AppCompatActivity
         pd.setTitle("Sanitizer Seller ");
         pd.setMessage("Please Wait...");
         pd.show();
-        String url = "https://digitalcafe.us/springbliss/orderItemsList.php";
+        String url = "https://digitalcafe.us/springbliss/orderItemList.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response)
