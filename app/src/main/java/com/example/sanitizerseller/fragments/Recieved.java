@@ -55,7 +55,7 @@ public class Recieved extends Fragment {
         displayText=view.findViewById(R.id.displayText);
 
         final ProgressDialog pd = new ProgressDialog(getContext());
-        pd.setTitle("Grocery");
+        pd.setTitle("Sanitizer");
         pd.setMessage("please wait...");
         pd.show();
         StringRequest request=new StringRequest(Request.Method.POST, apiurl, new Response.Listener<String>() {

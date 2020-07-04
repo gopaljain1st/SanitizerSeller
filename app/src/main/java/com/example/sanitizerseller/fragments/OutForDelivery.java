@@ -56,7 +56,7 @@ public class OutForDelivery extends Fragment {
 
 
         final ProgressDialog pd = new ProgressDialog(getContext());
-        pd.setTitle("Grocery");
+        pd.setTitle("Sanitizer");
         pd.setMessage("please wait...");
         pd.show();
         StringRequest request=new StringRequest(Request.Method.POST, apiurl, new Response.Listener<String>() {

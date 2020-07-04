@@ -49,7 +49,7 @@ public class OrderItemsActivity extends AppCompatActivity
         orderId.setText("Order Id : "+id);
 
         final ProgressDialog pd = new ProgressDialog(OrderItemsActivity.this);
-        pd.setTitle("Grocery Seller");
+        pd.setTitle("Sanitizer Seller");
         pd.setMessage("Please Wait...");
         pd.show();
         String url = "https://digitalcafe.us/springbliss/orderItemList.php";

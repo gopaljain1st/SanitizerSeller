@@ -75,7 +75,7 @@ public class RecievedAdapter extends RecyclerView.Adapter<RecievedAdapter.orderA
                     {
 
                         final ProgressDialog pd = new ProgressDialog(context);
-                        pd.setTitle("Grocery");
+                        pd.setTitle("Sanitizer");
                         pd.setMessage("Loading...");
                         pd.show();
                         String url = "https://digitalcafe.us/springbliss/changeOrderStatus.php";
@@ -128,7 +128,7 @@ public class RecievedAdapter extends RecyclerView.Adapter<RecievedAdapter.orderA
                     {
 
                         final ProgressDialog pd = new ProgressDialog(context);
-                        pd.setTitle("Grocery");
+                        pd.setTitle("Sanitizer");
                         pd.setMessage("Please Wait...");
                         pd.show();
                         String url = "https://digitalcafe.us/springbliss/changeOrderStatus.php";
