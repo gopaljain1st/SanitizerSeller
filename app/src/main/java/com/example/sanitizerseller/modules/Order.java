@@ -45,7 +45,18 @@ public class Order
         this.dateOfOrder = dateOfOrder;
     }
 
-
+    public Order(String orderId, String name, String address, String mobile, String deliveryTime, String itemCount, String totalAmount, String orderStatus, String timeOfOrder, String dateOfOrder) {
+        this.orderId = orderId;
+        this.name = name;
+        this.address = address;
+        this.mobile = mobile;
+        this.deliveryTime = deliveryTime;
+        this.itemCount = itemCount;
+        this.totalAmount = totalAmount;
+        this.orderStatus = orderStatus;
+        this.timeOfOrder = timeOfOrder;
+        this.dateOfOrder = dateOfOrder;
+    }
 
     public String getOrderId() {
         return orderId;

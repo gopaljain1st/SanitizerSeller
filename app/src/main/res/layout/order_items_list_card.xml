@@ -24,7 +24,7 @@
                 android:textSize="17sp"
                 android:padding="5dp"
                 android:id="@+id/itemCardName"
-                android:textColor="#000"
+                android:textColor="@color/colorPrimary"
                 />
             <TextView
                 android:padding="5dp"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="ID : 1"
                 android:id="@+id/itemCardId"
-                android:textColor="#000"
+                android:textColor="@color/colorPrimary"
                 />
             <TextView
                 android:padding="5dp"
@@ -48,6 +48,14 @@
                 android:layout_height="wrap_content"
                 android:text="Quantity : 2"
                 android:id="@+id/itemCardQuantity"
+                android:textColor="#5D5D5D"
+                />
+            <TextView
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight : 2kg"
+                android:id="@+id/itemCardWeight"
                 android:textColor="#5D5D5D"
                 />
 

@@ -55,7 +55,7 @@ public class Shipped extends Fragment
 
 
         final ProgressDialog pd = new ProgressDialog(getContext());
-        pd.setTitle("Sanitizer Seller");
+        pd.setTitle("Grocery");
         pd.setMessage("please wait...");
         pd.show();
         StringRequest request=new StringRequest(Request.Method.POST, apiurl, new Response.Listener<String>() {
@@ -72,7 +72,7 @@ public class Shipped extends Fragment
                     if (sucess.equals("1")) {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
-                            al.add(new Order(object.getString("id"),object.getString("orderId"),object.getString("itemId"),object.getString("name"),object.getString("address"),object.getString("mobile"),object.getString("itemName"),object.getString("totalAmount"),object.getString("orderStatus"),object.getString("timeOfOrder"),object.getString("dateOfOrder")));
+                            al.add(new Order(object.getString("orderId"),object.getString("name"),object.getString("address"),object.getString("mobile"),object.getString("deliveryPlace"),object.getString("totalItems"),object.getString("totalAmount"),object.getString("orderStatus"),object.getString("timeOfOrder"),object.getString("dateOfOrder")));
                         }
                         adapter=new ShipeedAdapter(getContext(),al);
                         rv.setAdapter(adapter);

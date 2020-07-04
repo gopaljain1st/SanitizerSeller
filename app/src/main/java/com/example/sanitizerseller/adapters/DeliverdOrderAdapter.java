@@ -38,13 +38,13 @@ public class DeliverdOrderAdapter extends RecyclerView.Adapter<DeliverdOrderAdap
         holder.orderDate.setText(o.getDateOfOrder());
         holder.address.setText(o.getAddress());
         holder.name.setText(o.getName());
-        holder.itemCount.setText(o.getItemName());
+        holder.itemCount.setText(o.getItemCount());
         holder.mobile.setText(o.getMobile());
         holder.totalPrice.setText(o.getTotalAmount());
         holder.orderId.setText(o.getOrderId());
         holder.orderStatus.setText(o.getOrderStatus());
         holder.orderTime.setText(o.getTimeOfOrder());
-        holder.itemId.setText(o.getItemId());
+        holder.deliveryPlace.setText(o.getDeliveryTime());
     }
     @Override
     public int getItemCount() {
@@ -53,7 +53,7 @@ public class DeliverdOrderAdapter extends RecyclerView.Adapter<DeliverdOrderAdap
 
 
     public class orderAdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView orderDate,orderTime,orderId,orderStatus,name,address,mobile,itemCount,totalPrice,itemId;
+        TextView orderDate,orderTime,orderId,orderStatus,name,address,mobile,itemCount,totalPrice,deliveryPlace;
         public orderAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             orderDate=itemView.findViewById(R.id.order_date);
@@ -65,7 +65,7 @@ public class DeliverdOrderAdapter extends RecyclerView.Adapter<DeliverdOrderAdap
             mobile=itemView.findViewById(R.id.mobile);
             itemCount=itemView.findViewById(R.id.total_savings);
             totalPrice=itemView.findViewById(R.id.payableAmount);
-            itemId=itemView.findViewById(R.id.itemId);
+            deliveryPlace=itemView.findViewById(R.id.itemWeightData);
            }
     }
 }

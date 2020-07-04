@@ -9,11 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sanitizerseller.R;
 import com.example.sanitizerseller.modules.Item;
 
 import java.util.ArrayList;
 
-import com.example.sanitizerseller.R;
 
 public class OrderItemsAdapter extends RecyclerView.Adapter<OrderItemsAdapter.OrderItemsAdapterViewHolder>
 {
@@ -42,6 +42,7 @@ public class OrderItemsAdapter extends RecyclerView.Adapter<OrderItemsAdapter.Or
         holder.itemId.setText("Item ID : "+i.getId());
         holder.itemPrice.setText("Item Price : \u20B9 "+i.getItemMRP()+"/-");
         holder.itemName.setText("Item Name :"+i.getItemName());
+        holder.itemWeight.setText("Item Weight : "+i.getOrderId());
     }
 
     @Override
@@ -50,7 +51,7 @@ public class OrderItemsAdapter extends RecyclerView.Adapter<OrderItemsAdapter.Or
     }
 
     public class OrderItemsAdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView itemName,itemPrice,itemId,itemQuantity,itemSpecialLine;
+        TextView itemName,itemPrice,itemId,itemQuantity,itemSpecialLine,itemWeight;
         public OrderItemsAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             itemName=itemView.findViewById(R.id.itemCardName);
@@ -58,6 +59,7 @@ public class OrderItemsAdapter extends RecyclerView.Adapter<OrderItemsAdapter.Or
             itemId=itemView.findViewById(R.id.itemCardId);
             itemQuantity=itemView.findViewById(R.id.itemCardQuantity);
             itemSpecialLine=itemView.findViewById(R.id.itemCardSpecialLine);
+            itemWeight=itemView.findViewById(R.id.itemCardWeight);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.sanitizerseller.adapters;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.sanitizerseller.OrderItemsActivity;
 import com.example.sanitizerseller.R;
 import com.example.sanitizerseller.modules.Order;
 
@@ -55,13 +57,13 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
         holder.orderDate.setText(o.getDateOfOrder());
         holder.address.setText(o.getAddress());
         holder.name.setText(o.getName());
-        holder.itemCount.setText(o.getItemName());
+        holder.itemCount.setText(o.getItemCount());
         holder.mobile.setText(o.getMobile());
         holder.totalPrice.setText(o.getTotalAmount());
         holder.orderId.setText(o.getOrderId());
         holder.orderStatus.setText(o.getOrderStatus());
         holder.orderTime.setText(o.getTimeOfOrder());
-        holder.itemId.setText(o.getItemId());
+        holder.deliveryPlace.setText(o.getDeliveryTime());
         holder.confirmOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,10 +75,10 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
                     {
 
                         final ProgressDialog pd = new ProgressDialog(context);
-                        pd.setTitle("Sanitizer Seller");
+                        pd.setTitle("Grocery");
                         pd.setMessage("Loading...");
                         pd.show();
-                        String url = "https://digitalcafe.us/springbliss/changeOrderStatus.php";
+                        String url = "https://simplyfied.co.in/groceryapp/changeOrderStatus.php";
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -99,7 +101,7 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
                             @Override
                             protected Map<String, String> getParams() throws AuthFailureError {
                                 Map<String, String> map = new HashMap<>();
-                                map.put("id", o.getId());
+                                map.put("id", o.getOrderId());
                                 map.put("status","Shipeed");
                                 return map;
                             }
@@ -126,10 +128,10 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
                     {
 
                         final ProgressDialog pd = new ProgressDialog(context);
-                        pd.setTitle("Sanitizer Seller");
-                        pd.setMessage("Loading...");
+                        pd.setTitle("Grocery");
+                        pd.setMessage("Please Wait...");
                         pd.show();
-                        String url = "https://digitalcafe.us/springbliss/changeOrderStatus.php";
+                        String url = "https://simplyfied.co.in/groceryapp/changeOrderStatus.php";
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -137,6 +139,7 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
                                 if(response.equals("Status Updated"))
                                 {
                                     Toast.makeText(context, "Order Cancled", Toast.LENGTH_SHORT).show();
+                                    al.remove(o);
                                     notifyDataSetChanged();
                                 }
                                 else Toast.makeText(context, ""+response, Toast.LENGTH_SHORT).show();
@@ -151,7 +154,7 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
                             @Override
                             protected Map<String, String> getParams() throws AuthFailureError {
                                 Map<String, String> map = new HashMap<>();
-                                map.put("id", o.getId());
+                                map.put("id", o.getOrderId());
                                 map.put("status","Cancled");
                                 return map;
                             }
@@ -167,6 +170,15 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
 
                     }
                 }).show();
+
+            }
+        });
+        holder.viewItems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OrderItemsActivity.class);
+                intent.putExtra("orderId",o.getOrderId());
+                context.startActivity(intent);
             }
         });
     }
@@ -178,8 +190,8 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
 
 
     public class PackedAdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView orderDate,orderTime,orderId,orderStatus,name,address,mobile,itemCount,totalPrice,itemId;
-        Button confirmOrder,cancelOrder;
+        TextView orderDate,orderTime,orderId,orderStatus,name,address,mobile,itemCount,totalPrice,deliveryPlace;
+        Button confirmOrder,cancelOrder,viewItems;
         public PackedAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             orderDate=itemView.findViewById(R.id.order_date);
@@ -191,9 +203,10 @@ public class PackedAdapter extends RecyclerView.Adapter<PackedAdapter.PackedAdap
             mobile=itemView.findViewById(R.id.mobile);
             itemCount=itemView.findViewById(R.id.total_savings);
             totalPrice=itemView.findViewById(R.id.payableAmount);
+            deliveryPlace=itemView.findViewById(R.id.itemWeightData);
             cancelOrder=itemView.findViewById(R.id.cancelOrder);
             confirmOrder=itemView.findViewById(R.id.proceedOrder);
-            itemId=itemView.findViewById(R.id.itemId);
+            viewItems=itemView.findViewById(R.id.viewAllItems);
         }
     }
 }
