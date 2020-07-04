@@ -78,7 +78,7 @@ public class ShipeedAdapter extends RecyclerView.Adapter<ShipeedAdapter.ShipeedA
                         pd.setTitle("Grocery");
                         pd.setMessage("Please Wait");
                         pd.show();
-                        String url = "https://simplyfied.co.in/groceryapp/changeOrderStatus.php";
+                        String url = "https://digitalcafe.us/springbliss/changeOrderStatus.php";
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -131,7 +131,7 @@ public class ShipeedAdapter extends RecyclerView.Adapter<ShipeedAdapter.ShipeedA
                         pd.setTitle("Grocery");
                         pd.setMessage("Please Wait...");
                         pd.show();
-                        String url = "https://simplyfied.co.in/groceryapp/changeOrderStatus.php";
+                        String url = "https://digitalcafe.us/springbliss/changeOrderStatus.php";
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
