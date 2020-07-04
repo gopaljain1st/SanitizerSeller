@@ -18,6 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.sanitizerseller.adapters.OrderItemsAdapter;
+import com.example.sanitizerseller.modules.Item;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,8 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.sanitizerseller.adapters.OrderItemsAdapter;
-import com.example.sanitizerseller.modules.Item;
 
 public class OrderItemsActivity extends AppCompatActivity
 {
@@ -49,7 +49,7 @@ public class OrderItemsActivity extends AppCompatActivity
         orderId.setText("Order Id : "+id);
 
         final ProgressDialog pd = new ProgressDialog(OrderItemsActivity.this);
-        pd.setTitle("Sanitizer Seller ");
+        pd.setTitle("Grocery Seller");
         pd.setMessage("Please Wait...");
         pd.show();
         String url = "https://digitalcafe.us/springbliss/orderItemList.php";
@@ -65,7 +65,7 @@ public class OrderItemsActivity extends AppCompatActivity
                     if (sucess.equals("1")) {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
-                            al.add(new Item(object.getString("item_id"),object.getString("item_name"),object.getString("item_price"),object.getString("item_quantity"),object.getString("order_id")));
+                            al.add(new Item(object.getString("itemId"),object.getString("itemName"),object.getString("totalAmount"),object.getString("quantity"),object.getString("weight")));
                         }
                         adapter=new OrderItemsAdapter(OrderItemsActivity.this,al);
                         rv.setLayoutManager(manager);
