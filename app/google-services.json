@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "245287664941",
+    "firebase_url": "https://sanitizerseller-3a1db.firebaseio.com",
+    "project_id": "sanitizerseller-3a1db",
+    "storage_bucket": "sanitizerseller-3a1db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245287664941:android:e0c9cd124ad0a3c2e3a7a4",
+        "android_client_info": {
+          "package_name": "com.example.sanitizerseller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245287664941-cbiu3iam291aa1e07ej9hqrovm03gi8s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sanitizerseller",
+            "certificate_hash": "a75ed9b33f454644a0f2658be9dab216d0b404f4"
+          }
+        },
+        {
+          "client_id": "245287664941-9of83clm4bsiihj70g90a760s1vvsn6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMCtr-brsv-PrsPHfy1mdBN1FJztynwtM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245287664941-9of83clm4bsiihj70g90a760s1vvsn6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

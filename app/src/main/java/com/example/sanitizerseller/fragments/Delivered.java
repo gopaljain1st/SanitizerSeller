@@ -75,7 +75,7 @@ public class Delivered extends Fragment
                     if (sucess.equals("1")) {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
-                            al.add(new Order(object.getString("orderId"),object.getString("name"),object.getString("address"),object.getString("mobile"),object.getString("deliveryPlace"),object.getString("totalItems"),object.getString("totalAmount"),object.getString("orderStatus"),object.getString("timeOfOrder"),object.getString("dateOfOrder")));
+                            al.add(new Order(object.getString("orderId"),object.getString("userId"),object.getString("name"),object.getString("address"),object.getString("mobile"),object.getString("deliveryPlace"),object.getString("totalItems"),object.getString("totalAmount"),object.getString("orderStatus"),object.getString("timeOfOrder"),object.getString("dateOfOrder")));
                         }
                         adapter=new DeliverdOrderAdapter(getContext(),al);
                         rv.setAdapter(adapter);

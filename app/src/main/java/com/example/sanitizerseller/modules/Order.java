@@ -31,14 +31,14 @@ public class Order
         this.id = id;
     }
 
-    public Order(String id, String orderId, String itemId, String name, String address, String mobile, String itemName, String totalAmount, String orderStatus, String timeOfOrder, String dateOfOrder) {
-        this.id = id;
+    public Order(String orderId, String userId, String name, String address, String mobile, String deliveryTime, String itemCount, String totalAmount, String orderStatus, String timeOfOrder, String dateOfOrder) {
         this.orderId = orderId;
-        this.itemId = itemId;
+        this.userId = userId;
         this.name = name;
         this.address = address;
         this.mobile = mobile;
-        this.itemName = itemName;
+        this.deliveryTime = deliveryTime;
+        this.itemCount = itemCount;
         this.totalAmount = totalAmount;
         this.orderStatus = orderStatus;
         this.timeOfOrder = timeOfOrder;

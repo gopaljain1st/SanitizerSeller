@@ -1,5 +1,6 @@
 package com.example.sanitizerseller;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,16 +10,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.sanitizerseller.adapters.ViewPagerAdapter;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class HomeActivity extends AppCompatActivity
 {
@@ -152,9 +165,52 @@ public class HomeActivity extends AppCompatActivity
 
 
     }
+    public void updateToken()
+    {
+        if(sp.getString("token","0").equals("0") || !sp.getString("token","0").equals(FirebaseInstanceId.getInstance().getToken()))
+        {
+            final String seller_id=sp.getString("id","");
+            final ProgressDialog pd = new ProgressDialog(HomeActivity.this);
+            pd.setTitle("Customer Choice");
+            pd.setMessage("Please Wait...");
+            pd.show();
+            String url = "https://digitalcafe.us/springbliss/updateToken.php";
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response)
+                {
+                    pd.dismiss();
+                    if(response.trim().equals("token updated"))
+                    {
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("token",FirebaseInstanceId.getInstance().getToken());
+                        editor.commit();
+                        Toast.makeText(HomeActivity.this, "Token Updated", Toast.LENGTH_SHORT).show();
+                    }
+                    else Toast.makeText(HomeActivity.this, ""+response, Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    pd.dismiss();
+                    Toast.makeText(HomeActivity.this, "" + error, Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("id",seller_id);
+                    map.put("token",FirebaseInstanceId.getInstance().getToken());
+                    map.put("table","seller");
+                    return map;
+                }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(HomeActivity.this, new HurlStack());
+            requestQueue.add(stringRequest);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
