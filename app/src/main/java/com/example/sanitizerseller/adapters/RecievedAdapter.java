@@ -200,7 +200,7 @@ public class RecievedAdapter extends RecyclerView.Adapter<RecievedAdapter.orderA
 
                         final ProgressDialog pd = new ProgressDialog(context);
                         pd.setTitle("Sanitizer");
-                        pd.setMessage("Please Wait...");
+                        pd.setMessage("Loading...");
                         pd.show();
                         String url = "https://digitalcafe.us/springbliss/changeOrderStatus.php";
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -209,7 +209,74 @@ public class RecievedAdapter extends RecyclerView.Adapter<RecievedAdapter.orderA
                                 pd.dismiss();
                                 if(response.equals("Status Updated"))
                                 {
-                                    Toast.makeText(context, "Order Cancelled", Toast.LENGTH_SHORT).show();
+                                    final ProgressDialog pd = new ProgressDialog(context);
+                                    pd.setTitle("Sanitizer");
+                                    pd.setMessage("Please Wait...");
+                                    pd.show();
+                                    String url = "https://digitalcafe.us/springbliss/sendNotification.php";
+                                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response)
+                                        {
+                                            pd.dismiss();
+                                            if(response.equals("something wrong"))
+                                            {
+                                                new AlertDialog.Builder(context).setTitle("Status Updated").setMessage("Status Updated And Notification Not Sent").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+
+                                                    }
+                                                }).show();
+                                            } else
+                                            {
+                                                JSONObject jsonObject = null;
+                                                try {
+                                                    jsonObject = new JSONObject(response);
+                                                    String sucess = jsonObject.getString("success");
+                                                    if(sucess.equals("1"))
+                                                    {
+                                                        new AlertDialog.Builder(context).setTitle("Status Updated").setMessage("Status Updated And Notification Has Been Sent").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                            }
+                                                        }).show();
+                                                    } else
+                                                    {
+                                                        new AlertDialog.Builder(context).setTitle("Status Updated").setMessage("Status Updated And Notification Not Sent").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                            }
+                                                        }).show();
+                                                    }    } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }
+                                    }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            pd.dismiss();
+                                            Toast.makeText(context, "" + error, Toast.LENGTH_SHORT).show();
+                                        }
+                                    }) {
+                                        @Override
+                                        protected Map<String, String> getParams() throws AuthFailureError {
+                                            Map<String, String> map = new HashMap<>();
+                                            map.put("serverKey", ServerKey.CUSTOMER_KEY);
+                                            map.put("table","UserRegistration");
+                                            map.put("userId",o.getUserId());
+                                            map.put("title","Oops! Your Order Is Cancelled");
+                                            map.put("body","Order Id : "+o.getOrderId()+"\nOrder Date : "+o.getDateOfOrder()+
+                                                    "\nOrder Time : "+o.getTimeOfOrder()+"\nOrder By : "+o.getName()+""+"\nNo Of Items : "+o.getItemCount()
+                                                    +"\nTotal Amount : "+o.getTotalAmount()
+                                                    +"\nThank you for shopping i hope you will order again");
+                                            return map;
+                                        }
+                                    };
+                                    RequestQueue requestQueue = Volley.newRequestQueue(context, new HurlStack());
+                                    requestQueue.add(stringRequest);
                                     al.remove(o);
                                     notifyDataSetChanged();
                                 }
@@ -226,7 +293,7 @@ public class RecievedAdapter extends RecyclerView.Adapter<RecievedAdapter.orderA
                             protected Map<String, String> getParams() throws AuthFailureError {
                                 Map<String, String> map = new HashMap<>();
                                 map.put("id", o.getOrderId());
-                                map.put("status","Cancelled");
+                                map.put("status","Cancled");
                                 return map;
                             }
                         };

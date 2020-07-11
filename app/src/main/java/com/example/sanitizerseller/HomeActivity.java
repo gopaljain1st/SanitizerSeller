@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         sp=getSharedPreferences("seller",MODE_PRIVATE);
+        updateToken();
         viewPager =  findViewById(R.id.flipper);
 
         sliderDotspanel =  findViewById(R.id.orderSliderDots);
