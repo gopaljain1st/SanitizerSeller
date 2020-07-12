@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("email", email);
                                 editor.putString("password", password);
                                 editor.putString("valid", arr[5].trim());
-                                if(!arr[6].equals("1"))
+                                if(arr.length>=7&&!arr[6].equals("1"))
                                     editor.putString("token",arr[6]);
                                 editor.commit();
                                 if (arr[5].trim().equals("true"))
